@@ -11,7 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-     title:'\$ Daddy',
+     title:'ExpenseDaddy',
+     theme: ThemeData(
+       primarySwatch: Colors.purple,
+       accentColor: Colors.lime,
+       fontFamily:'Quicksand'
+     ),
      home:MyHomePage(),
 
     );

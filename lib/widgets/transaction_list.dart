@@ -26,13 +26,15 @@ TransactionList(this._transactions);
                        border: 
                        Border.all(
                          color:
-                         Colors.purple,
+                         Theme.of(context).primaryColor,
                          width:2)
                          ),
                 child:
                 Text(
                   '\$ ${_transactions[index].amount.toStringAsFixed(2)}',
-                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color:Colors.purple,
+                style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color:
+                         Theme.of(context).primaryColor,
+                         
                 ),)
                 ),
                 Column(
