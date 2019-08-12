@@ -14,22 +14,31 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
      title:'ExpenseDaddy',
      theme: ThemeData(
+       errorColor: Colors.green,
         textTheme:ThemeData.light().textTheme.copyWith(
            title:TextStyle(
              fontFamily:'OpenSans',
              fontSize:18,
-             fontWeight: FontWeight.bold),),
+             fontWeight: FontWeight.bold),
+             button: TextStyle(
+               color:Colors.white,
+             )
+             ),
+             
        primarySwatch: Colors.purple,
        accentColor: Colors.lime,
        fontFamily:'Quicksand',
+       
        appBarTheme: AppBarTheme(
          textTheme:ThemeData.light().textTheme.copyWith(
            title:TextStyle(
              fontFamily:'OpenSans',
              fontSize: 20,
              fontWeight: FontWeight.bold),
+             
          ), )
      ),
+     
      home:MyHomePage(),
 
     );
@@ -67,10 +76,10 @@ final List<Transaction>_userTransactions=[
      }).toList();
    }
  
-  void _addNewTransaction(String title,double amount){
+  void _addNewTransaction(String title,double amount,DateTime chosenDate){
    final NewTx=Transaction(title:title,
    amount: amount,
-   date: DateTime.now(),
+   date: chosenDate,
    id: DateTime.now().toString()
    );
    
@@ -87,6 +96,13 @@ _userTransactions.add(NewTx);
           return NewTransaction(_addNewTransaction);
       });
     }
+    void _deleteTransaction(String id){
+  setState(() {
+   _userTransactions.removeWhere((tx){
+     return tx.id==id;
+   }) ;
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +129,7 @@ _userTransactions.add(NewTx);
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
           Chart(_recentTransactions), 
-          TransactionList(_userTransactions),
+          TransactionList(_userTransactions, _deleteTransaction),
      
         
         ],
